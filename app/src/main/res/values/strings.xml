@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">Workout Timer</string>
+    <string name="timerName">Timer</string>
+    <string name="startButton">START</string>
+    <string name="stopButton">STOP</string>
+    <string name="pauseButton">PAUSE</string>
+    <string name="settingsButton">SETTINGS</string>
+    <string name="workTime">45</string>
+    <string name="pauseTime">45</string>
+    <string name="work_time">Work:</string>
+    <string name="pause_time">Pause:</string>
+    <string name="backButton">BACK</string>
+    <string name="saveButton">SAVE</string>
+    <string name="initialTime">00:00:00</string>
+</resources>

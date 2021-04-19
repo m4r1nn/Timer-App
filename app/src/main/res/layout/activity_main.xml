@@ -1,147 +1,150 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:layout_gravity="center"
-    android:padding="16dp"
     android:background="@color/backgroundColor"
+    android:orientation="vertical"
+    android:padding="16dp"
     tools:context=".MainActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="2"/>
+        android:layout_weight="2" />
 
     <TextView
         android:id="@+id/name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
         android:layout_weight="2"
         android:background="@drawable/background_logo"
+        android:gravity="center"
         android:text="@string/timerName"
         android:textAlignment="center"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
-        android:textColor="@android:color/holo_green_light"
-        android:gravity="center"
-        android:textStyle="bold"
-        android:textSize="60sp"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"/>
+        android:textColor="@android:color/black"
+        android:textSize="45sp"
+        android:textStyle="bold" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="0.5"/>
+        android:layout_weight="0.5" />
 
     <TextView
         android:id="@+id/chronometer"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
         android:layout_weight="2"
+        android:gravity="center"
+        android:text="@string/initialTime"
         android:textAlignment="center"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
-        android:textColor="@android:color/holo_blue_dark"
-        android:textStyle="bold"
+        android:textColor="@android:color/black"
         android:textSize="60sp"
-        android:text="@string/initialTime"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"/>
+        android:textStyle="bold" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="0.5"/>
+        android:layout_weight="0.5" />
 
     <TextView
         android:id="@+id/actionType"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@android:color/holo_green_light"
-        android:textSize="25sp"
-        android:textColor="@android:color/holo_red_dark"
+        android:background="@android:color/darker_gray"
+        android:textAlignment="center"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
-        android:textAlignment="center"/>
+        android:textColor="@android:color/holo_red_dark"
+        android:textSize="25sp" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="1.5"/>
+        android:layout_weight="1.5" />
 
-    <LinearLayout
-        android:orientation="horizontal"
-        android:background="@drawable/first_layout_shape"
-        android:padding="16dp"
+    <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:gravity="bottom"
         android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp">
+        android:layout_marginEnd="16dp"
+        android:layout_weight="1"
+        android:background="@drawable/buttons_layout"
+        android:padding="8dp">
 
-        <Button
+        <ImageButton
             android:id="@+id/startButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:layout_marginStart="16dp"
-            android:layout_marginEnd="16dp"
-            android:text="@string/startButton"
-            tools:ignore="NestedWeights"
+            android:layout_width="60sp"
+            android:layout_height="60sp"
+            android:layout_marginBottom="8dp"
+            android:background="@null"
             android:onClick="startChronometer"
-            android:background="@drawable/round_button"/>
+            android:scaleType="fitXY"
+            app:layout_constraintBottom_toTopOf="@+id/stopButton"
+            app:layout_constraintEnd_toStartOf="@+id/pauseButton"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/play_button" />
 
-        <Button
+        <ImageButton
             android:id="@+id/pauseButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:layout_marginStart="16dp"
-            android:layout_marginEnd="16dp"
-            android:text="@string/pauseButton"
+            android:layout_width="60sp"
+            android:layout_height="60sp"
+            android:layout_marginBottom="8dp"
+            android:background="@null"
             android:onClick="pauseChronometer"
-            android:background="@drawable/round_button"/>
-    </LinearLayout>
+            android:scaleType="fitXY"
+            app:layout_constraintBottom_toTopOf="@+id/settingsButton"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/startButton"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/pause_button" />
 
-    <LinearLayout
-        android:orientation="horizontal"
-        android:background="@drawable/second_layout_shape"
-        android:padding="16dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:gravity="top"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp">
-
-        <Button
+        <ImageButton
             android:id="@+id/stopButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:layout_marginStart="16dp"
-            android:layout_marginEnd="16dp"
-            android:text="@string/stopButton"
-            tools:ignore="NestedWeights"
+            android:layout_width="60sp"
+            android:layout_height="60sp"
+            android:layout_marginTop="8dp"
+            android:background="@null"
             android:onClick="stopChronometer"
-            android:background="@drawable/round_button"/>
+            android:scaleType="fitXY"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/settingsButton"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/startButton"
+            app:srcCompat="@drawable/stop_button" />
 
-        <Button
+        <ImageButton
             android:id="@+id/settingsButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:layout_marginStart="16dp"
-            android:layout_marginEnd="16dp"
-            android:text="@string/settingsButton"
+            android:layout_width="60sp"
+            android:layout_height="60sp"
+            android:layout_marginTop="8dp"
+            android:background="@null"
             android:onClick="openSettings"
-            android:background="@drawable/round_button"/>
-    </LinearLayout>
+            android:scaleType="fitXY"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/stopButton"
+            app:layout_constraintTop_toBottomOf="@+id/pauseButton"
+            app:srcCompat="@drawable/settings_button" />
+
+    </android.support.constraint.ConstraintLayout>
+
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="1.5"/>
+        android:layout_weight="1.5" />
 </LinearLayout>

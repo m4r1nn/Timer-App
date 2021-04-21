@@ -5,27 +5,33 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_gravity="center"
-    android:background="@color/backgroundColor"
+    android:background="@drawable/timer_background"
     android:orientation="vertical"
     android:padding="16dp"
     tools:context=".MainActivity">
 
-    <TextView
-        android:id="@+id/name"
-        android:layout_width="match_parent"
-        android:layout_height="120dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
-        android:background="@drawable/background_logo"
-        android:gravity="center"
-        android:text="@string/timerName"
-        android:textAlignment="center"
-        android:textAppearance="@style/TextAppearance.AppCompat.Large"
-        android:textColor="@android:color/black"
-        android:textSize="45sp"
-        android:textStyle="bold"
+
+    <pl.droidsonroids.gif.GifImageView
+        android:id="@+id/run_gif_id"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:scaleX="2"
+        android:scaleY="2"
+        android:src="@drawable/run_gif"
+        app:layout_constraintBottom_toTopOf="@+id/chronometer"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/stopped_gif_id"
+        android:contentDescription="@null"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:scaleX="2"
+        android:scaleY="2"
+        android:src="@drawable/stopped_gif"
         app:layout_constraintBottom_toTopOf="@+id/chronometer"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -36,9 +42,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
         android:gravity="center"
         android:text="@string/initialTime"
         android:textAlignment="center"
@@ -48,15 +52,15 @@
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/actionType"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/name" />
+        app:layout_constraintTop_toBottomOf="@+id/run_gif_id" />
 
     <TextView
         android:id="@+id/actionType"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
         android:background="@android:color/darker_gray"
@@ -66,6 +70,7 @@
         android:textSize="25sp"
         app:layout_constraintBottom_toTopOf="@+id/constraintLayout"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/chronometer" />
 
@@ -73,19 +78,17 @@
         android:id="@+id/constraintLayout"
         android:layout_width="match_parent"
         android:layout_height="180sp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="16dp"
-        android:background="@drawable/buttons_layout"
+        android:background="@null"
         android:padding="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/actionType">
 
         <ImageButton
             android:id="@+id/startButton"
+            android:contentDescription="@null"
             android:layout_width="60sp"
             android:layout_height="60sp"
             android:layout_marginBottom="8dp"
@@ -101,6 +104,7 @@
 
         <ImageButton
             android:id="@+id/pauseButton"
+            android:contentDescription="@null"
             android:layout_width="60sp"
             android:layout_height="60sp"
             android:layout_marginBottom="8dp"
@@ -116,6 +120,7 @@
 
         <ImageButton
             android:id="@+id/stopButton"
+            android:contentDescription="@null"
             android:layout_width="60sp"
             android:layout_height="60sp"
             android:layout_marginTop="8dp"
@@ -131,6 +136,7 @@
 
         <ImageButton
             android:id="@+id/settingsButton"
+            android:contentDescription="@null"
             android:layout_width="60sp"
             android:layout_height="60sp"
             android:layout_marginTop="8dp"

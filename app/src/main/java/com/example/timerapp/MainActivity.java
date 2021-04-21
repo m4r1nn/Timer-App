@@ -12,6 +12,7 @@ import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Chronometer;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.io.BufferedReader;
@@ -22,6 +23,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.nio.Buffer;
+
+import pl.droidsonroids.gif.GifImageView;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -47,9 +50,14 @@ public class MainActivity extends AppCompatActivity {
     private MediaPlayer stopSound = null;
     private static final String WORK_FILE_NAME = "storeWorkTime.txt";
     private static final String PAUSE_FILE_NAME = "storePauseTime.txt";
+    private ImageView stoppedGif = null;
+    private GifImageView runGif = null;
 
     private void initTimes() {
-        status = Status.Pause;
+        stoppedGif.setVisibility(View.VISIBLE);
+        runGif.setVisibility(View.INVISIBLE);
+        status = Status.Stopped;
+        actionType.setTextColor(getResources().getColor(R.color.red));
         running = false;
         stopped = true;
         startTime = 0L;
@@ -65,6 +73,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
         Log.d(LOG_TAG, "onCreate");
+        stoppedGif = findViewById(R.id.stopped_gif_id);
+        runGif = findViewById(R.id.run_gif_id);
         chronometer = findViewById(R.id.chronometer);
         actionType = findViewById(R.id.actionType);
         actionType.setText(Status.Stopped.toString());
@@ -101,7 +111,10 @@ public class MainActivity extends AppCompatActivity {
                         seconds = 0;
                         startTime = SystemClock.uptimeMillis();
                         timeSwapBuff = 0;
+                        stoppedGif.setVisibility(View.INVISIBLE);
+                        runGif.setVisibility(View.VISIBLE);
                         status = Status.Working;
+                        actionType.setTextColor(getResources().getColor(R.color.green));
                         initStartSound();
                         startSound.start();
                     }
@@ -111,7 +124,10 @@ public class MainActivity extends AppCompatActivity {
                         seconds = 0;
                         startTime = SystemClock.uptimeMillis();
                         timeSwapBuff = 0;
+                        stoppedGif.setVisibility(View.VISIBLE);
+                        runGif.setVisibility(View.INVISIBLE);
                         status = Status.Pause;
+                        actionType.setTextColor(getResources().getColor(R.color.blue));
                         initStopSound();
                         stopSound.start();
                     }
@@ -132,10 +148,15 @@ public class MainActivity extends AppCompatActivity {
     public void startChronometer(View view) {
         Log.d(LOG_TAG, "startChronometer");
         if (!running) {
+            if (status != Status.Pause) {
+                stoppedGif.setVisibility(View.INVISIBLE);
+                runGif.setVisibility(View.VISIBLE);
+            }
             if (chronometer.getText().toString().equals("00:00:00")) {
                 initStartSound();
                 startSound.start();
                 status = Status.Working;
+                actionType.setTextColor(getResources().getColor(R.color.green));
             }
             startTime = SystemClock.uptimeMillis();
             handler.postDelayed(updateTimeThread, 0);
@@ -146,6 +167,8 @@ public class MainActivity extends AppCompatActivity {
 
     public void pauseChronometer(View view) {
         Log.d(LOG_TAG, "pauseChronometer");
+        stoppedGif.setVisibility(View.VISIBLE);
+        runGif.setVisibility(View.INVISIBLE);
         if (running) {
             timeSwapBuff += timeInMilliseconds;
             handler.removeCallbacks(updateTimeThread);
@@ -159,7 +182,10 @@ public class MainActivity extends AppCompatActivity {
         initTimes();
         handler.postDelayed(updateTimeThread, 0);
         stopped = true;
+        stoppedGif.setVisibility(View.VISIBLE);
+        runGif.setVisibility(View.INVISIBLE);
         status = Status.Stopped;
+        actionType.setTextColor(getResources().getColor(R.color.red));
         actionType.setText(status.toString());
     }
 
